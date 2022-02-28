@@ -18,12 +18,15 @@ export const mutations = {
 }
 
 export const actions = {
+  FETCH_SESSION({ commit }) {
+    return this.$axios.get('/session');
+  },
   LOGIN({ commit }, { email, password, recaptchaToken }) {
     return new Promise((resolve, reject) => {
       this.$axios
         .post('/login', { email, password, recaptchaToken })
         .then((response) => {
-          const { data } = response.data
+          const { data } = response
           commit('SET_USER', data)
           resolve(response)
         })
