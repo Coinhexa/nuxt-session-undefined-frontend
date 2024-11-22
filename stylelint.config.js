@@ -1,12 +1,7 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  customSyntax: 'postcss-html',
+  extends: ['stylelint-config-standard', 'stylelint-config-recommended-vue'],
   // add your custom config here
   // https://stylelint.io/user-guide/configuration
-  rules: {
-    'at-rule-no-unknown': null,
-    'function-name-case': null,
-    'value-keyword-case': null,
-    'no-empty-source': null,
-    'length-zero-no-unit': null,
-  },
+  rules: {},
 }

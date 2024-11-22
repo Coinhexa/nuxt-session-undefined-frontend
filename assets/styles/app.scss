@@ -1,0 +1,13 @@
+// Import Bulma and Buefy styles
+@import '~/assets/styles/vars.scss';
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
+@import '~/assets/styles/scrollbar.scss';
+
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
+  overflow: hidden;
+}
