@@ -15,7 +15,11 @@ export default {
   css: ['~/assets/styles/app.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/buefy', '~/plugins/focus.client.js'],
+  plugins: [
+    '~/plugins/axios.js',
+    '~/plugins/buefy.js',
+    '~/plugins/focus.client.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

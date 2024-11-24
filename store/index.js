@@ -1,19 +1,28 @@
 export const state = () => ({
+  csrfToken: null,
   redirect: null,
 })
 
 export const mutations = {
+  SET_CSRF_TOKEN(state, csrfToken) {
+    state.csrfToken = csrfToken
+  },
   SET_REDIRECT(state, redirect) {
     state.redirect = redirect
   },
 }
 
 export const actions = {
-  nuxtServerInit({ commit, dispatch }, { $dayjs, req }) {
-    console.log('req.user is', req.user);
-    console.log('req.session is', req.session);
-    console.log('req.headers are', req.headers);
-    console.log('req.headers.cookie is ', req.headers.cookie);
-    commit('me/SET_USER', req.user)
+  async fetchCsrfToken({ commit }) {
+    try {
+      const { data } = await this.$axios.get('/csrf/token')
+      commit('SET_CSRF_TOKEN', data.token)
+      console.log('FETCH CSRF TOKEN', data.token)
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  async nuxtServerInit({ commit, dispatch }, { $dayjs, req }) {
+    await dispatch('fetchCsrfToken')
   },
 }
