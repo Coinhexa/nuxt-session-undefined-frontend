@@ -18,17 +18,14 @@ export const mutations = {
 }
 
 export const actions = {
-  LOGIN({ commit }, { email, password, recaptchaToken }) {
-    return new Promise((resolve, reject) => {
-      this.$axios
-        .post('/login', { email, password, recaptchaToken })
-        .then((response) => {
-          const { data } = response.data
-          commit('SET_USER', data)
-          resolve(response)
-        })
-        .catch(reject)
-    })
+  async LOGIN({ commit }, { email, password }) {
+    try {
+      const { data } = await this.$axios.post('/login', { email, password })
+      commit('SET_USER', data)
+    } catch (error) {
+      console.error('There was an error at the login action')
+      console.error(error)
+    }
   },
   LOGOUT({ commit }) {
     return new Promise((resolve, reject) => {
