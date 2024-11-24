@@ -27,18 +27,13 @@ export const actions = {
       console.error(error)
     }
   },
-  LOGOUT({ commit }) {
-    return new Promise((resolve, reject) => {
-      this.$axios
-        .post('/logout')
-        .then((response) => {
-          commit('RESET_USER')
-          resolve(true)
-        })
-        .catch((error) => {
-          commit('RESET_USER')
-          reject(error)
-        })
-    })
+  async LOGOUT({ commit }) {
+    try {
+      await this.$axios.post('/logout')
+      commit('RESET_USER')
+    } catch (error) {
+      console.error('There was an error at the logout action')
+      console.error(error)
+    }
   },
 }
